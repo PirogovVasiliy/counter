@@ -20,6 +20,9 @@ func (cc *CounterContract) CreateCounter(ctx contractapi.TransactionContextInter
 	if err != nil {
 		return err
 	}
+
+	ctx.GetStub().SetEvent("CreateCounter", counterJSON)
+
 	return ctx.GetStub().PutState(stateCounter, counterJSON)
 }
 
@@ -57,6 +60,8 @@ func (cc *CounterContract) IncrimentCounter(ctx contractapi.TransactionContextIn
 		return err
 	}
 
+	ctx.GetStub().SetEvent("IncrimentCounter", counterJSON)
+
 	return ctx.GetStub().PutState(stateCounter, counterJSON)
 }
 
@@ -78,6 +83,8 @@ func (cc *CounterContract) MinusCounter(ctx contractapi.TransactionContextInterf
 	if err != nil {
 		return err
 	}
+
+	ctx.GetStub().SetEvent("MinusCounter", counterJSON)
 
 	return ctx.GetStub().PutState(stateCounter, counterJSON)
 }
